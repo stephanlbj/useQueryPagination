@@ -1,0 +1,25 @@
+#root {
+  max-width: 1280px;
+
+}
+
+.wrapperStyle{
+  display:'flex';
+  margin: 0;
+  height: 100vh;
+  align-content:'center';
+  justify-content:'center';
+  color:'white';
+  font-size:'30px';
+}
+
+.products_container {
+  display: grid;
+  width: auto;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+}
+
+
+
