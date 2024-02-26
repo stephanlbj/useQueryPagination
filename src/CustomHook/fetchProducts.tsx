@@ -1,12 +1,12 @@
 import {baseURL} from "../constants/constant"
 
 
-    export const fetchProducts = async (limit:number, page:number)=>{
+    export const fetchProducts = async (skip:number)=>{
 
-  const skip = page* 10 - 10
+  
  
         try {
-            const req = await fetch(`${baseURL+limit+"&skip="+skip}`)
+            const req = await fetch(`${baseURL+skip}`)
             const response = await req.json()
              
            return response

@@ -2,29 +2,28 @@ import { Root } from "../../@types"
 import SingleProduct from "./SingleProduct"
 
 type ProductListProps ={
-  handle: React.Dispatch<React.SetStateAction<number>>
-  data:Root[]
-  handlePage: React.Dispatch<React.SetStateAction<number>>
+  showMore: () => void
+  showLess: ()=>void
+  data:Root
+  itemPerpage: number
 }
 
-const ProductList = ({data,handle, handlePage}:ProductListProps) => {
+const ProductList = ({data,showMore, showLess, itemPerpage}:ProductListProps) => {
 
-
-
-  const fetchNext = ()=>{
-    handle((prev)=>prev+10)
-    handlePage((prev)=>prev+10)
-  }
+  
+ 
+ 
   return (
   <>
-    <div className="products_container">
+ 
+ <div className="products_container">
 
 {
-    data.map((product)=>{
-        return <SingleProduct 
-        key={product.id}
-        product={product}/>
-    })
+   data.products.map((product)=>{
+       return <SingleProduct 
+       key={product.id}
+       product={product}/>
+   })
 }
 
 
@@ -33,13 +32,27 @@ const ProductList = ({data,handle, handlePage}:ProductListProps) => {
 <div style={{display:'flex', alignItems:'center', justifyContent:'center',
  gap:10, marginTop:'20px'}}>
 
-<p onClick={()=>handle((prev)=>{
-  if(prev===10) return 10
-  return prev -10
-})}>Prev</p>
 
-<p onClick={fetchNext}>Next</p>
-
+{
+  itemPerpage > 0 && (
+    <button 
+    style={{cursor:'pointer'}}
+    onClick={showLess}>Prev</button>
+  )
+}
+ 
+  
+  
+{
+  (data.total - data.limit) === data.skip  ? null :  (
+    <button
+    style={{cursor:'pointer'}}
+     onClick={showMore}>Next</button>
+  )
+}
+ 
+   
+  
  </div>
   </>
   )

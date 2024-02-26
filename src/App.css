@@ -22,4 +22,16 @@
 }
 
 
+.product_title{
+  opacity: 0.8;
+  cursor:pointer;
+  background-color: black;
+  
+}
 
+.product_title:hover{
+  background-color: gray;
+  color: black;
+  
+  
+}

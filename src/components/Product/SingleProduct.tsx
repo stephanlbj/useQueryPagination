@@ -1,16 +1,27 @@
-import { Root } from "../../@types"
+import { Product } from "../../@types"
+import SkeletonComponent from "../SkeletonComponent"
 
  
 
-const SingleProduct = ({product}:{product:Root}) => {
+const SingleProduct = ({product }:{product:Product}) => {
+
+  
+
+
+  if(Object.keys(product).length === 0)
+  return <SkeletonComponent/>
+
+
+
   return (
     <div style={
         {
+            position:'relative',
             display:'flex',
             flexDirection:'column', 
             alignItems:'center',
             justifyContent:'center',
-              height:'200px', width:'80%' ,
+            height:'200px', width:'80%' ,
             borderWidth:'1px', border:'1px solid gray', 
             justifySelf:'center', borderRadius:'8%', overflow:'hidden'
             }
@@ -18,13 +29,24 @@ const SingleProduct = ({product}:{product:Root}) => {
         
         <img
         
-        width="100%"
-        style={{objectFit:'fill', height:'120px' }}
+         
+        style={{objectFit:'cover', height:'100%', width:'100%',
+       cursor:'pointer' }}
         src={product.images[0]}
         alt="product-_image"
         />
 
-        <p style={{marginTop:'8px'}}>{product.title.slice(0,15)}</p>
+      <div 
+      className="product_title"
+      style={{ position:'absolute', bottom:0,  
+      left:0, right:0}}>
+      <p style={{textAlign:'center'}}>
+      {product.title.slice(0,15)}
+      </p>
+      </div>
+     
+ 
+
     </div>
   )
 }
